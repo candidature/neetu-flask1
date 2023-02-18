@@ -6,6 +6,37 @@ app = Flask(__name__)
 
 students = []
 
+########################################################################
+########################################################################
+# this is for getting an existing student
+
+@app.route("/student",methods=["PUT"])
+def put_students():
+    # find what to modify
+
+    global students
+
+    current_student_name = request.args.get("current_name")
+
+    new_student_name = request.args.get("new_name")
+
+    # create new list
+    modified_students = []
+    # how you modify something in a list?
+
+    for student in students:
+        if student == current_student_name:
+            modified_students.append(new_student_name)
+        else:
+            modified_students.append(student)
+
+    students = modified_students
+
+    return "Successfully modified"
+########################################################################
+
+
+
 
 ########################################################################
 ########################################################################
